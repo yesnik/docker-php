@@ -11,6 +11,6 @@ This is a simple Docker setup for PHP development.
 2. Run docker-compose:
     ```bash
     cd docker-php
-    docker-compose up
+    docker compose up
     ```
 3. Visit http://127.0.0.1:8080/
