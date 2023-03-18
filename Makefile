@@ -1,2 +1,2 @@
-php-cli:
+cli:
 	docker compose run php-cli sh
