@@ -10,14 +10,15 @@ This is a Docker setup for PHP development.
 
 ## Installation
 
-1. Clone this repo:
+1. Clone this repo with the name of your project, say `mysite`:
     ```bash
-    git clone git@github.com:yesnik/docker-php.git
+    git clone git@github.com:yesnik/docker-php.git mysite
     ```
-2. Run docker compose:
+2. Build docker images and run:
     ```bash
-    cd docker-php
-    docker compose up
+    cd mysite
+    make build
+    make up
     ```
 3. Visit http://127.0.0.1:8080/
 4. Run container with bash console: `make cli`
@@ -25,4 +26,6 @@ This is a Docker setup for PHP development.
 
 ## Makefile commands
 
+- `make build` - build containers for app
 - `make cli` - run container `php-cli` with shell
+- `make up` - start app

@@ -1,9 +1,14 @@
 FROM php:8.2-cli-alpine
 
+ARG HOST_USER_ID
+ARG HOST_GROUP_ID
+
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/bin --filename=composer --quiet
+RUN addgroup -g ${HOST_GROUP_ID} --system app
+RUN adduser -G app --system -D -s /bin/sh -u ${HOST_USER_ID} app
+USER app
 
 WORKDIR /app
