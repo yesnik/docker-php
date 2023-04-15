@@ -10,19 +10,37 @@ This is a Docker setup for PHP development.
 
 ## Installation
 
-1. Clone this repo with the name of your project, say `mysite`:
+1. Clone this repo with the name of your project, say `mysite`, and remove `.git` folder:
     ```bash
-    git clone git@github.com:yesnik/docker-php.git mysite
+    git clone --depth 1 git@github.com:yesnik/docker-php.git mysite
+    cd mysite
+    rm -rf .git
     ```
 2. Build docker images and run:
     ```bash
-    cd mysite
     make build
     make up
     ```
 3. Visit http://127.0.0.1:8080/
-4. Run container with bash console: `make cli`
-5. Container has `composer` installed. Install any PHP-framework you need.
+
+### Symfony Installation
+
+1. Run container with bash console: `make cli`
+2. Install [Symfony](https://symfony.com/):
+    ```
+    rm -rf public
+    composer create-project symfony/skeleton .
+    ```
+3. Visit http://127.0.0.1:8080/
+
+### Laravel Installation
+
+1. Run container with bash console: `make cli`
+2. Install [Laravel](https://laravel.com/):
+    ```
+    rm -rf public
+    composer create-project laravel/laravel .
+    ```
 
 ## Makefile commands
 
