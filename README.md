@@ -47,3 +47,4 @@ This is a Docker setup for PHP development.
 - `make build` - build containers for app
 - `make cli` - run container `php-cli` with shell
 - `make up` - start app
+- `make reset` - stop containers, remove volumes and orphan containers
