@@ -12,7 +12,7 @@ This is a Docker setup for PHP development.
 
 1. Clone this repo with the name of your project, say `mysite`, and remove `.git` folder:
     ```bash
-    git clone --depth 1 git@github.com:yesnik/docker-php.git mysite
+    git clone --depth 1 https://github.com/yesnik/docker-php.git mysite
     cd mysite
     rm -rf .git
     ```
