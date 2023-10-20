@@ -20,14 +20,23 @@ This is a Docker setup for PHP development.
     ```bash
     make build
     make up
+    
+    # Or if you don't have `make` utility:
+    docker compose build --build-arg HOST_USER_ID="$(id -u)" --build-arg HOST_GROUP_ID="$(id -g)"
+    docker compose up -d
     ```
-3. Visit http://127.0.0.1:8080/
+4. Visit http://127.0.0.1:8080/
 
 ### Symfony Installation
 
-1. Run container with bash console: `make cli`
-2. Install [Symfony](https://symfony.com/):
+1. Run container with bash console:
+    ```bash
+    make cli
+    # Or
+    docker compose run -it --rm php-cli sh
     ```
+2. Install [Symfony](https://symfony.com/):
+    ```bash
     rm -rf public
     composer create-project symfony/skeleton .
     ```
@@ -35,9 +44,14 @@ This is a Docker setup for PHP development.
 
 ### Laravel Installation
 
-1. Run container with bash console: `make cli`
-2. Install [Laravel](https://laravel.com/):
+1. Run container with bash console:
+    ```bash
+    make cli
+    # Or
+    docker compose run -it --rm php-cli sh
     ```
+2. Install [Laravel](https://laravel.com/):
+    ```bash
     rm -rf public
     composer create-project laravel/laravel .
     ```
