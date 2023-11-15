@@ -65,22 +65,53 @@ This is a Docker setup for PHP development.
 
 ## Additional Services
 
+### MariaDB
+
+Image: https://hub.docker.com/_/mariadb
+
+Add to `docker-compose.yml`:
+
+```yml
+services:
+    mariadb:
+        image: mariadb:11.1.2
+        volumes:
+            - db_data:/var/lib/mysql:rw
+        ports:
+            - '3306:3306'
+        environment:
+            MARIADB_ROOT_PASSWORD: password
+
+volumes:
+    db_data:
+```
+Add to `docker/php-cli/Dockerfile` and `docker/php-fpm/Dockerfile`:
+
+```dockerfile
+# MariaDB
+RUN apk add --no-cache mariadb-client \
+    && docker-php-ext-install mysqli pdo pdo_mysql
+```
+
 ### Postgres
 
 Add to `docker-compose.yml`:
 
 ```yml
 services:
-    database:
+    postgres:
         image: postgres:${POSTGRES_VERSION:-15}-alpine
         environment:
             POSTGRES_DB: ${POSTGRES_DB:-app}
             POSTGRES_USER: ${POSTGRES_USER:-app}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123}
         volumes:
-            - database_data:/var/lib/postgresql/data:rw
+            - db_data:/var/lib/postgresql/data:rw
         ports:
             - '5432:5432'
+
+volumes:
+    db_data:
 ```
 
 Add to `docker/php-cli/Dockerfile` and `docker/php-fpm/Dockerfile`:
