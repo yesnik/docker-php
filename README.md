@@ -80,6 +80,9 @@ services:
         ports:
             - '3306:3306'
         environment:
+            MARIADB_DATABASE: app
+            MARIADB_USER: admin
+            MARIADB_PASSWORD: password
             MARIADB_ROOT_PASSWORD: password
 
 volumes:
